@@ -1,4 +1,7 @@
-const API_URL = 'http://localhost:8000/api';
+// Automatically switch between localhost and relative path for production
+const API_URL = import.meta.env.PROD
+    ? '/api'
+    : 'http://localhost:8000/api';
 
 export const api = {
     calculateAmortization: async (payload) => {
@@ -23,7 +26,6 @@ export const api = {
                 body: JSON.stringify(payload),
             });
 
-            // Check for server errors (like 422 or 500)
             if (!response.ok) {
                 console.error('Server Error:', await response.text());
                 return null;
