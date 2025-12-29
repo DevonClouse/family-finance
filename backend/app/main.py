@@ -1,7 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .models import AmortizationRequest, ProjectionRequest
-from .services import FinancialCalculator
+try:
+    from .models import AmortizationRequest, ProjectionRequest
+    from .services import FinancialCalculator
+except ImportError:
+    from models import AmortizationRequest, ProjectionRequest
+    from services import FinancialCalculator
 
 app = FastAPI(title="Flow & Grow API")
 
