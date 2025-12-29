@@ -13,6 +13,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/api/health")
+async def health_check():
+    return {"status": "ok", "version": "1.0.0"}
+
 @app.post("/api/calculate-amortization")
 async def calculate_amortization(data: AmortizationRequest):
     return FinancialCalculator.generate_amortization_schedule(data)

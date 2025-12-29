@@ -27,7 +27,8 @@ export const api = {
             });
 
             if (!response.ok) {
-                console.error('Server Error:', await response.text());
+                const errorText = await response.text();
+                console.error(`Server Error (${response.status}):`, errorText);
                 return null;
             }
 
